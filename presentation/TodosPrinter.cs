@@ -6,7 +6,7 @@ using Observer;
 namespace TodosPrinter
 {
 
-    public class StatsPrinter: Observer.IObserver
+    public class StatsPrinter: Observer.IObserver<List<Task>>
     {
         public void Notify(List<Task> todos)
         {
@@ -29,7 +29,7 @@ namespace TodosPrinter
         }
     }
 
-    public class AllTaskPrinter: IObserver
+    public class AllTaskPrinter: Observer.IObserver<List<Task>>
     {
         public void Notify(List<Task> todos)
         {
@@ -47,7 +47,7 @@ namespace TodosPrinter
         }
     }
 
-    public class YetToDoPrinter: IObserver
+    public class YetToDoPrinter: Observer.IObserver<List<Task>>
     {
         public void Notify(List<Task> todos)
         {

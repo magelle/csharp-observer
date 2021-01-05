@@ -11,7 +11,7 @@ namespace observer
     {
         static void Main(string[] args)
         {
-            List<IObserver> printers = new List<IObserver>();
+            List<Observer.IObserver<List<Task>>> printers = new List<Observer.IObserver<List<Task>>>();
             Todos todos = new Todos(new InMemoryTodoRepository());
             todos.AddObserver(new StatsPrinter());
             todos.AddObserver(new YetToDoPrinter());

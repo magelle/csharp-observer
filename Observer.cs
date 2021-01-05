@@ -2,14 +2,14 @@ using System.Collections.Generic;
 using Todo;
 
 namespace Observer {
-    public interface IObserver
+    public interface IObserver<T>
     {
-        public void Notify(List<Task> todos);
+        public void Notify(T evt);
     }
 
-    public interface ISubject {
-        public void AddObserver(IObserver printer);
-        public void RemoveObserver(IObserver printer);
+    public interface ISubject<S> {
+        public void AddObserver(IObserver<S> observer);
+        public void RemoveObserver(IObserver<S> observer);
         public void NotifyObservers();
     }
 }

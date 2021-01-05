@@ -5,21 +5,21 @@ using Observer;
 namespace Todo
 {
 
-    public class Todos: ISubject
+    public class Todos: Observer.ISubject<List<Task>>
     {
         private ITodoRepository _repository;
-        private List<IObserver> _observers = new List<IObserver>();
+        private List<Observer.IObserver<List<Task>>> _observers = new List<Observer.IObserver<List<Task>>>();
 
         public Todos(ITodoRepository repository) {
             _repository = repository;
         }
 
-        public void AddObserver(IObserver printer)
+        public void AddObserver(Observer.IObserver<List<Task>> printer)
         {
             _observers.Add(printer);
         }
 
-        public void RemoveObserver(IObserver printer)
+        public void RemoveObserver(Observer.IObserver<List<Task>> printer)
         {
             _observers.Remove(printer);
         }
@@ -63,7 +63,7 @@ namespace Todo
         public void NotifyObservers()
         {
             List<Task> tasks = _repository.FindAll();
-            foreach(IObserver observer in _observers)
+            foreach(Observer.IObserver<List<Task>> observer in _observers)
             {
                 observer.Notify(tasks);
                 Console.WriteLine($"\n----------------------------------------------------------");
